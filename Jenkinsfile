@@ -6,16 +6,18 @@ pipeline{
 }
   stages{
   stage('terraform init'){
-  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']])
+  {
+  steps{
 
-    }
-      steps{
+    sh "terraform init"
 
-        sh "terraform init"
+  }
+
+  }
 
       }
-      }
-    
+
     }
     }
     def getTerraformPath(){
