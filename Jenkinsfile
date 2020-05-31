@@ -1,3 +1,4 @@
+@Library('github.com/releaseworks/jenkinslib') _
 pipeline{
   agent any
   environment {
@@ -5,10 +6,14 @@ pipeline{
 }
   stages{
   stage('terraform init'){
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
+
       steps{
 
         sh "terraform init"
 
+      }
       }
     }
     }
